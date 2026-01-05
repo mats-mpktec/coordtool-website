@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoordTool - Professionell Koordinatkonvertering för iOS</title>
+    <meta name="description" content="CoordTool är en professionell koordinatkonverteringsapp för iOS som stödjer 9 format inkl. DD, DMS, UTM, MGRS, Plus Code, SWEREF99, RT90 och VOR-navigation. Perfekt för luftfart och geolokalisering.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://coordtool.se/sv/">
+    <meta property="og:title" content="CoordTool - Professionell Koordinatkonvertering för iOS">
+    <meta property="og:description" content="Konvertera mellan 9 koordinatformat inkl. DD, DMS, UTM, MGRS, Plus Code, SWEREF99, RT90 och VOR-navigation. Perfekt för luftfart och geolokalisering.">
+    <meta property="og:image" content="https://coordtool.se/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://coordtool.se/sv/">
+    <meta property="twitter:title" content="CoordTool - Professionell Koordinatkonvertering för iOS">
+    <meta property="twitter:description" content="Konvertera mellan 9 koordinatformat inkl. DD, DMS, UTM, MGRS, Plus Code, SWEREF99, RT90 och VOR-navigation.">
+    <meta property="twitter:image" content="https://coordtool.se/images/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="CoordTool" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Canonical and hreflang -->
+    <link rel="canonical" href="https://coordtool.se/sv/">
+    <link rel="alternate" hreflang="sv" href="https://coordtool.se/sv/">
+    <link rel="alternate" hreflang="en" href="https://coordtool.se/en/">
+    <link rel="alternate" hreflang="x-default" href="https://coordtool.se/en/">
+
+    <!-- Preload fonts -->
+    <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Inter-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Tailwind CSS -->
+    <link href="/dist/output.css" rel="stylesheet">
+
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "67b02f1b688542b9a5f50608d87b5fd5"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "CoordTool",
+      "operatingSystem": "iOS",
+      "applicationCategory": "UtilitiesApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "SEK"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "ratingCount": "1"
+      },
+      "description": "Professionell koordinatkonverteringsapp för iOS som stödjer 9 format inkl. DD, DMS, UTM, MGRS, Plus Code, SWEREF99, RT90 och VOR-navigation."
+    }
+    </script>
+</head>
+<body class="antialiased">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-200">
+        <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="/sv/" class="flex items-center space-x-2">
+                        <!-- TODO: Replace with actual logo -->
+                        <img src="/images/logo.png" alt="CoordTool" class="h-8 w-8">
+                        <span class="text-xl font-bold text-gray-900">CoordTool</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex md:items-center md:space-x-8">
+                    <a href="#funktioner" class="text-gray-700 hover:text-blue-600 transition-colors">Funktioner</a>
+                    <a href="#skarmbilder" class="text-gray-700 hover:text-blue-600 transition-colors">Skärmbilder</a>
+                    <a href="#priser" class="text-gray-700 hover:text-blue-600 transition-colors">Priser</a>
+                    <a href="https://apps.apple.com/app/coordtool/id6751749076" class="btn-primary">Ladda ner</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" type="button" class="text-gray-700 hover:text-blue-600">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#funktioner" class="text-gray-700 hover:text-blue-600 transition-colors">Funktioner</a>
+                    <a href="#skarmbilder" class="text-gray-700 hover:text-blue-600 transition-colors">Skärmbilder</a>
+                    <a href="#priser" class="text-gray-700 hover:text-blue-600 transition-colors">Priser</a>
+                    <a href="https://apps.apple.com/app/coordtool/id6751749076" class="btn-primary text-center">Ladda ner</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gray-900 text-white">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-4xl font-bold tracking-tight sm:text-6xl">
+                        Professionell Koordinatkonvertering för iOS
+                    </h1>
+                    <p class="mt-6 text-lg leading-8 text-gray-300">
+                        CoordTool är den ultimata koordinatkonverteringsappen för luftfart och geolokalisering. Konvertera sömlöst mellan 9 olika koordinatformat inklusive SWEREF99, RT90, UTM, MGRS, Plus Code och VOR-navigation.
+                    </p>
+                    <div class="mt-10 flex items-center gap-x-6">
+                        <a href="https://apps.apple.com/app/coordtool/id6751749076" class="btn-primary">
+                            <svg class="inline-block w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            Ladda ner på App Store
+                        </a>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-400">Prova alla funktioner gratis i 7 dagar - ingen inloggning krävs</p>
+                </div>
+                <div class="relative lg:ml-10">
+                    <!-- TODO: Replace with actual hero image -->
+                    <img src="/images/hero-image.png" alt="CoordTool App Screenshot" class="rounded-2xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Section -->
+    <section class="bg-gray-50 py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl text-center">
+                <h2 class="section-title">Varför CoordTool?</h2>
+                <p class="section-subtitle">
+                    CoordTool är designad för professionella inom luftfart, geolokalisering och kartläggning som behöver snabb och exakt konvertering mellan olika koordinatsystem. Med stöd för både internationella och svenska system samt unik VOR-navigation är CoordTool det kompletta verktyget för koordinathantering.
+                </p>
+            </div>
+
+            <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+                <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+                    <div class="flex flex-col">
+                        <dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
+                            <svg class="h-5 w-5 flex-none text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Precision
+                        </dt>
+                        <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
+                            <p class="flex-auto">Exakt konvertering mellan alla format med decimalprecision och korrekt datumtransformation för svenska system.</p>
+                        </dd>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
+                            <svg class="h-5 w-5 flex-none text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                            Offline-First
+                        </dt>
+                        <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
+                            <p class="flex-auto">Fungerar offline efter initial appstart. All konvertering sker lokalt på din enhet.</p>
+                        </dd>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
+                            <svg class="h-5 w-5 flex-none text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                            </svg>
+                            Integritetsfokus
+                        </dt>
+                        <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
+                            <p class="flex-auto">All data stannar på din enhet. Ingen insamling eller delning av dina koordinater.</p>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="funktioner" class="py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl text-center">
+                <h2 class="section-title">Kraftfulla Funktioner</h2>
+                <p class="section-subtitle">
+                    Alla funktioner ingår i 7-dagars provperioden - ingen inloggning krävs
+                </p>
+            </div>
+
+            <!-- All Features -->
+            <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+                <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                                </svg>
+                            </div>
+                            9 Koordinatformat
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">DD, DDM, DMS, UTM, MGRS, Plus Code, SWEREF99, RT90 och VOR-navigation</dd>
+                    </div>
+
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            GPS-Integration
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Realtidspositionering med iOS Location Services och automatisk konvertering</dd>
+                    </div>
+
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                            </div>
+                            Svenska Koordinatsystem
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Fullständigt stöd för SWEREF99 och RT90 med korrekt datumtransformation</dd>
+                    </div>
+
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            Snabb Kopiering
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Kopiera enskilda koordinater eller alla format samtidigt med en knapptryckning</dd>
+                    </div>
+
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            Interaktiv Karta
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Kartvy med nålplacering, zoom och distansberäkningar</dd>
+                    </div>
+
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+                                </svg>
+                            </div>
+                            Validering & Precision
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Realtidsvalidering av inmatning med hög decimalprecision</dd>
+                    </div>
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                </svg>
+                            </div>
+                            VOR/NDB Navigation
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Global databas med VOR- och NDB-stationer, distans- och bäringsberäkningar, visuella rutningslinjer på kartan</dd>
+                    </div>
+
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                                </svg>
+                            </div>
+                            Plus Code med Googles Algoritm
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Implementerad med Googles officiella algoritm för 11-teckens precision</dd>
+                    </div>
+
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            Helmert-Transformation
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">7-parameter transformation mellan koordinatsystem med ellipsoidparametrar (GRS80, Bessel 1841)</dd>
+                    </div>
+
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                                </svg>
+                            </div>
+                            Anpassning & Teman
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Light/Dark mode med systempreferensdetektering och persistenta användarval</dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section id="skarmbilder" class="bg-gray-50 py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl text-center">
+                <h2 class="section-title">Så Här Ser Det Ut</h2>
+                <p class="section-subtitle">
+                    Upptäck CoordTools intuitiva gränssnitt
+                </p>
+            </div>
+
+            <!-- Screenshots Grid -->
+            <div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <div class="relative overflow-hidden rounded-2xl shadow-lg">
+                    <img src="/images/screenshots/01.jpg" alt="CoordTool Screenshot 1" class="w-full h-auto">
+                </div>
+                <div class="relative overflow-hidden rounded-2xl shadow-lg">
+                    <img src="/images/screenshots/02.jpg" alt="CoordTool Screenshot 2" class="w-full h-auto">
+                </div>
+                <div class="relative overflow-hidden rounded-2xl shadow-lg">
+                    <img src="/images/screenshots/03.jpg" alt="CoordTool Screenshot 3" class="w-full h-auto">
+                </div>
+                <div class="relative overflow-hidden rounded-2xl shadow-lg">
+                    <img src="/images/screenshots/04.jpg" alt="CoordTool Screenshot 4" class="w-full h-auto">
+                </div>
+                <div class="relative overflow-hidden rounded-2xl shadow-lg">
+                    <img src="/images/screenshots/05.jpg" alt="CoordTool Screenshot 5" class="w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="priser" class="py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl text-center">
+                <h2 class="section-title">Enkla Priser</h2>
+                <p class="section-subtitle">
+                    Börja gratis, uppgradera när du behöver mer
+                </p>
+            </div>
+
+            <div class="mx-auto mt-16 grid max-w-lg grid-cols-1 gap-8 lg:max-w-4xl lg:grid-cols-2">
+                <!-- Trial Period -->
+                <div class="flex flex-col justify-between rounded-3xl bg-white p-8 shadow-xl ring-1 ring-gray-200">
+                    <div>
+                        <h3 class="text-2xl font-bold tracking-tight text-gray-900">Provperiod</h3>
+                        <p class="mt-4 text-base leading-7 text-gray-600">Testa alla funktioner utan begränsningar</p>
+                        <p class="mt-6 flex items-baseline gap-x-1">
+                            <span class="text-5xl font-bold tracking-tight text-gray-900">7 dagar</span>
+                        </p>
+                        <p class="mt-2 text-sm text-gray-600">Helt gratis - ingen inloggning krävs</p>
+                        <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-gray-600">
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Alla 9 koordinatformat
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                VOR/NDB-navigation
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                GPS & interaktiv karta
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                SWEREF99 & RT90
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Inga begränsningar
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Ingen inloggning
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://apps.apple.com/app/coordtool/id6751749076" class="mt-8 block rounded-lg px-6 py-3 text-center text-sm font-semibold leading-6 text-blue-600 ring-1 ring-inset ring-blue-200 hover:ring-blue-300">
+                        Börja testa gratis
+                    </a>
+                </div>
+
+                <!-- PRO Plan -->
+                <div class="flex flex-col justify-between rounded-3xl bg-gradient-to-br from-blue-600 to-purple-600 p-8 shadow-xl ring-1 ring-gray-900/10">
+                    <div>
+                        <h3 class="text-2xl font-bold tracking-tight text-white">PRO</h3>
+                        <p class="mt-4 text-base leading-7 text-blue-100">Lås upp full åtkomst efter provperioden</p>
+                        <p class="mt-6 flex items-baseline gap-x-1">
+                            <span class="text-5xl font-bold tracking-tight text-white">39 kr</span>
+                        </p>
+                        <p class="mt-2 text-sm text-blue-100">Engångsköp - livstidsåtkomst</p>
+                        <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-white">
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Alla funktioner för alltid
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                9 koordinatformat
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                VOR/NDB-navigation
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                SWEREF99 & RT90
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Alla framtida uppdateringar
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Ingen prenumeration
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://apps.apple.com/app/coordtool/id6751749076" class="mt-8 block rounded-lg bg-white px-6 py-3 text-center text-sm font-semibold leading-6 text-blue-600 shadow-sm hover:bg-gray-50">
+                        Köp PRO
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section class="bg-gray-50 py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl text-center">
+                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
+                    <svg class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                    </svg>
+                </div>
+                <h2 class="mt-6 section-title">Din Integritet Först</h2>
+                <p class="section-subtitle">
+                    CoordTool respekterar din integritet. All koordinatbearbetning sker lokalt på din enhet. Vi samlar inte in, lagrar eller delar dina koordinater eller positionsdata. Appen fungerar offline efter initial appstart, vilket säkerställer att din data alltid förblir privat.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="bg-gray-900 text-white py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl text-center">
+                <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
+                    Redo att börja?
+                </h2>
+                <p class="mt-6 text-lg leading-8 text-gray-300">
+                    Ladda ner CoordTool idag och upplev professionell koordinatkonvertering på iOS.
+                </p>
+                <div class="mt-10 flex items-center justify-center gap-x-6">
+                    <a href="https://apps.apple.com/app/coordtool/id6751749076" class="btn-primary">
+                        <svg class="inline-block w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                        </svg>
+                        Ladda ner på App Store
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-white font-semibold mb-4">CoordTool</h3>
+                    <p class="text-gray-400 text-sm">
+                        Professionell koordinatkonvertering för iOS
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Juridiskt</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="https://mpktec.se/integritetspolicy" class="text-gray-400 hover:text-white text-sm transition-colors">Integritetspolicy</a>
+                        </li>
+                        <li>
+                            <a href="#" id="terms-link" class="text-gray-400 hover:text-white text-sm transition-colors cursor-pointer">Användarvillkor</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Språk</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="/sv/" class="text-white text-sm font-semibold">Svenska</a>
+                        </li>
+                        <li>
+                            <a href="/en/" class="text-gray-400 hover:text-white text-sm transition-colors">English</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                <p class="text-gray-400 text-sm">
+                    © 2025 MPK Tec AB. Alla rättigheter förbehållna.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Terms Modal -->
+    <div id="terms-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+            <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+                <h2 class="text-2xl font-bold text-gray-900">Användarvillkor</h2>
+                <button id="close-modal" class="text-gray-400 hover:text-gray-600">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="px-6 py-4 text-gray-700">
+                <h3 class="font-semibold text-lg mb-2">1. Acceptans av villkor</h3>
+                <p class="mb-4">Genom att använda CoordTool accepterar du dessa användarvillkor.</p>
+
+                <h3 class="font-semibold text-lg mb-2">2. Licensbeskrivning</h3>
+                <p class="mb-4">CoordTool är licensierad till dig för användning på iOS-enheter som du äger eller kontrollerar.</p>
+
+                <h3 class="font-semibold text-lg mb-2">3. Omfattning av licens</h3>
+                <p class="mb-4">Licensen som beviljas till dig för CoordTool är begränsad till en icke-överförbar licens att använda appen på iOS-enheter som du äger eller kontrollerar.</p>
+
+                <h3 class="font-semibold text-lg mb-2">4. Tekniska krav</h3>
+                <p class="mb-4">CoordTool kräver iOS 14.0 eller senare och är optimerad för iPhone och iPad.</p>
+
+                <h3 class="font-semibold text-lg mb-2">5. Underhåll och support</h3>
+                <p class="mb-4">MPK Tec AB ansvarar för att tillhandahålla underhåll och supporttjänster för CoordTool.</p>
+
+                <h3 class="font-semibold text-lg mb-2">6. Användardata</h3>
+                <p class="mb-4">CoordTool samlar inte in, lagrar eller delar dina koordinater eller positionsdata. All bearbetning sker lokalt på din enhet.</p>
+
+                <h3 class="font-semibold text-lg mb-2">7. Ansvarsbegränsning</h3>
+                <p class="mb-4">CoordTool tillhandahålls "i befintligt skick" utan några garantier. MPK Tec AB ansvarar inte för eventuella skador som uppstår från användningen av appen.</p>
+
+                <h3 class="font-semibold text-lg mb-2">8. Ändringar av villkor</h3>
+                <p class="mb-4">MPK Tec AB förbehåller sig rätten att ändra dessa villkor när som helst. Fortsatt användning av appen efter sådana ändringar innebär acceptans av de nya villkoren.</p>
+
+                <h3 class="font-semibold text-lg mb-2">9. Kontaktinformation</h3>
+                <p class="mb-4">För frågor om dessa villkor, kontakta MPK Tec AB via https://mpktec.se</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on links
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Terms modal
+        const termsLink = document.getElementById('terms-link');
+        const termsModal = document.getElementById('terms-modal');
+        const closeModal = document.getElementById('close-modal');
+
+        termsLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            termsModal.classList.remove('hidden');
+        });
+
+        closeModal.addEventListener('click', () => {
+            termsModal.classList.add('hidden');
+        });
+
+        // Close modal when clicking outside
+        termsModal.addEventListener('click', (e) => {
+            if (e.target === termsModal) {
+                termsModal.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

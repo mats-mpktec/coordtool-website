@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://coordtool.se/sitemap.xml

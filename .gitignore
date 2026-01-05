@@ -1,0 +1,23 @@
+# Node modules
+node_modules/
+
+# macOS files
+.DS_Store
+
+# Original/unoptimized images
+images/original/
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build output (keep dist/output.css in git for GitHub Pages)
+# dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

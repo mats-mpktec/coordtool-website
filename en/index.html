@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoordTool - Professional Coordinate Conversion for iOS</title>
+    <meta name="description" content="CoordTool is a professional coordinate conversion app for iOS supporting 9 formats incl. DD, DMS, UTM, MGRS, Plus Code, SWEREF99, RT90 and VOR navigation. Perfect for aviation and geolocation.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://coordtool.se/en/">
+    <meta property="og:title" content="CoordTool - Professional Coordinate Conversion for iOS">
+    <meta property="og:description" content="Convert between 9 coordinate formats incl. DD, DMS, UTM, MGRS, Plus Code, SWEREF99, RT90 and VOR navigation. Perfect for aviation and geolocation.">
+    <meta property="og:image" content="https://coordtool.se/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://coordtool.se/en/">
+    <meta property="twitter:title" content="CoordTool - Professional Coordinate Conversion for iOS">
+    <meta property="twitter:description" content="Convert between 9 coordinate formats incl. DD, DMS, UTM, MGRS, Plus Code, SWEREF99, RT90 and VOR navigation.">
+    <meta property="twitter:image" content="https://coordtool.se/images/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="CoordTool" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Canonical and hreflang -->
+    <link rel="canonical" href="https://coordtool.se/en/">
+    <link rel="alternate" hreflang="sv" href="https://coordtool.se/sv/">
+    <link rel="alternate" hreflang="en" href="https://coordtool.se/en/">
+    <link rel="alternate" hreflang="x-default" href="https://coordtool.se/en/">
+
+    <!-- Preload fonts -->
+    <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Inter-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Tailwind CSS -->
+    <link href="/dist/output.css" rel="stylesheet">
+
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "67b02f1b688542b9a5f50608d87b5fd5"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "CoordTool",
+      "operatingSystem": "iOS",
+      "applicationCategory": "UtilitiesApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "ratingCount": "1"
+      },
+      "description": "Professional coordinate conversion app for iOS supporting 9 formats incl. DD, DMS, UTM, MGRS, Plus Code, SWEREF99, RT90 and VOR navigation."
+    }
+    </script>
+</head>
+<body class="antialiased">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-200">
+        <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="/en/" class="flex items-center space-x-2">
+                        <!-- TODO: Replace with actual logo -->
+                        <img src="/images/logo.png" alt="CoordTool" class="h-8 w-8">
+                        <span class="text-xl font-bold text-gray-900">CoordTool</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex md:items-center md:space-x-8">
+                    <a href="#features" class="text-gray-700 hover:text-blue-600 transition-colors">Features</a>
+                    <a href="#screenshots" class="text-gray-700 hover:text-blue-600 transition-colors">Screenshots</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-blue-600 transition-colors">Pricing</a>
+                    <a href="https://apps.apple.com/app/coordtool/id6751749076" class="btn-primary">Download</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" type="button" class="text-gray-700 hover:text-blue-600">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#features" class="text-gray-700 hover:text-blue-600 transition-colors">Features</a>
+                    <a href="#screenshots" class="text-gray-700 hover:text-blue-600 transition-colors">Screenshots</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-blue-600 transition-colors">Pricing</a>
+                    <a href="https://apps.apple.com/app/coordtool/id6751749076" class="btn-primary text-center">Download</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gray-900 text-white">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-4xl font-bold tracking-tight sm:text-6xl">
+                        Professional Coordinate Conversion for iOS
+                    </h1>
+                    <p class="mt-6 text-lg leading-8 text-gray-300">
+                        CoordTool is the ultimate coordinate conversion app for aviation and geolocation. Seamlessly convert between 9 different coordinate formats including SWEREF99, RT90, UTM, MGRS, Plus Code and VOR navigation.
+                    </p>
+                    <div class="mt-10 flex items-center gap-x-6">
+                        <a href="https://apps.apple.com/app/coordtool/id6751749076" class="btn-primary">
+                            <svg class="inline-block w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            Download on App Store
+                        </a>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-400">Try all features free for 7 days - no login required</p>
+                </div>
+                <div class="relative lg:ml-10">
+                    <!-- TODO: Replace with actual hero image -->
+                    <img src="/images/hero-image.png" alt="CoordTool App Screenshot" class="rounded-2xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Section -->
+    <section class="bg-gray-50 py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl text-center">
+                <h2 class="section-title">Why CoordTool?</h2>
+                <p class="section-subtitle">
+                    CoordTool is designed for professionals in aviation, geolocation and mapping who need fast and accurate conversion between different coordinate systems. With support for both international and Swedish systems plus unique VOR navigation, CoordTool is the complete tool for coordinate management.
+                </p>
+            </div>
+
+            <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+                <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+                    <div class="flex flex-col">
+                        <dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
+                            <svg class="h-5 w-5 flex-none text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Precision
+                        </dt>
+                        <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
+                            <p class="flex-auto">Accurate conversion between all formats with decimal precision and correct datum transformation for Swedish systems.</p>
+                        </dd>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
+                            <svg class="h-5 w-5 flex-none text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                            Offline-First
+                        </dt>
+                        <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
+                            <p class="flex-auto">Works offline after initial app launch. All conversions happen locally on your device.</p>
+                        </dd>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
+                            <svg class="h-5 w-5 flex-none text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                            </svg>
+                            Privacy Focus
+                        </dt>
+                        <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
+                            <p class="flex-auto">All data stays on your device. No collection or sharing of your coordinates.</p>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl text-center">
+                <h2 class="section-title">Powerful Features</h2>
+                <p class="section-subtitle">
+                    All features included in 7-day trial - no login required
+                </p>
+            </div>
+
+            <!-- All Features -->
+            <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+                <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                                </svg>
+                            </div>
+                            9 Coordinate Formats
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">DD, DDM, DMS, UTM, MGRS, Plus Code, SWEREF99, RT90 and VOR navigation</dd>
+                    </div>
+
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            GPS Integration
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Real-time positioning with iOS Location Services and automatic conversion</dd>
+                    </div>
+
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                            </div>
+                            Swedish Coordinate Systems
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Full support for SWEREF99 and RT90 with correct datum transformation</dd>
+                    </div>
+
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            Quick Copy
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Copy individual coordinates or all formats at once with a single tap</dd>
+                    </div>
+
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            Interactive Map
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Map view with pin placement, zoom and distance calculations</dd>
+                    </div>
+
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+                                </svg>
+                            </div>
+                            Validation & Precision
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Real-time input validation with high decimal precision</dd>
+                    </div>
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                </svg>
+                            </div>
+                            VOR/NDB Navigation
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Global database of VOR and NDB stations, distance and bearing calculations, visual routing lines on map</dd>
+                    </div>
+
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                                </svg>
+                            </div>
+                            Plus Code with Google's Algorithm
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Implemented with Google's official algorithm for 11-character precision</dd>
+                    </div>
+
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            Helmert Transformation
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">7-parameter transformation between coordinate systems with ellipsoid parameters (GRS80, Bessel 1841)</dd>
+                    </div>
+
+                    <div class="relative pl-16">
+                        <dt class="text-base font-semibold leading-7 text-gray-900">
+                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                                </svg>
+                            </div>
+                            Customization & Themes
+                        </dt>
+                        <dd class="mt-2 text-base leading-7 text-gray-600">Light/Dark mode with system preference detection and persistent user settings</dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section id="screenshots" class="bg-gray-50 py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl text-center">
+                <h2 class="section-title">See It In Action</h2>
+                <p class="section-subtitle">
+                    Discover CoordTool's intuitive interface
+                </p>
+            </div>
+
+            <!-- Screenshots Grid -->
+            <div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <div class="relative overflow-hidden rounded-2xl shadow-lg">
+                    <img src="/images/screenshots/01.jpg" alt="CoordTool Screenshot 1" class="w-full h-auto">
+                </div>
+                <div class="relative overflow-hidden rounded-2xl shadow-lg">
+                    <img src="/images/screenshots/02.jpg" alt="CoordTool Screenshot 2" class="w-full h-auto">
+                </div>
+                <div class="relative overflow-hidden rounded-2xl shadow-lg">
+                    <img src="/images/screenshots/03.jpg" alt="CoordTool Screenshot 3" class="w-full h-auto">
+                </div>
+                <div class="relative overflow-hidden rounded-2xl shadow-lg">
+                    <img src="/images/screenshots/04.jpg" alt="CoordTool Screenshot 4" class="w-full h-auto">
+                </div>
+                <div class="relative overflow-hidden rounded-2xl shadow-lg">
+                    <img src="/images/screenshots/05.jpg" alt="CoordTool Screenshot 5" class="w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl text-center">
+                <h2 class="section-title">Simple Pricing</h2>
+                <p class="section-subtitle">
+                    Start free, upgrade when you need more
+                </p>
+            </div>
+
+            <div class="mx-auto mt-16 grid max-w-lg grid-cols-1 gap-8 lg:max-w-4xl lg:grid-cols-2">
+                <!-- Trial Period -->
+                <div class="flex flex-col justify-between rounded-3xl bg-white p-8 shadow-xl ring-1 ring-gray-200">
+                    <div>
+                        <h3 class="text-2xl font-bold tracking-tight text-gray-900">Trial Period</h3>
+                        <p class="mt-4 text-base leading-7 text-gray-600">Test all features without limitations</p>
+                        <p class="mt-6 flex items-baseline gap-x-1">
+                            <span class="text-5xl font-bold tracking-tight text-gray-900">7 days</span>
+                        </p>
+                        <p class="mt-2 text-sm text-gray-600">Completely free - no login required</p>
+                        <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-gray-600">
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                All 9 coordinate formats
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                VOR/NDB navigation
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                GPS & interactive map
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                SWEREF99 & RT90
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                No limitations
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                No login required
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://apps.apple.com/app/coordtool/id6751749076" class="mt-8 block rounded-lg px-6 py-3 text-center text-sm font-semibold leading-6 text-blue-600 ring-1 ring-inset ring-blue-200 hover:ring-blue-300">
+                        Start free trial
+                    </a>
+                </div>
+
+                <!-- PRO Plan -->
+                <div class="flex flex-col justify-between rounded-3xl bg-gradient-to-br from-blue-600 to-purple-600 p-8 shadow-xl ring-1 ring-gray-900/10">
+                    <div>
+                        <h3 class="text-2xl font-bold tracking-tight text-white">PRO</h3>
+                        <p class="mt-4 text-base leading-7 text-blue-100">Unlock full access after trial period</p>
+                        <p class="mt-6 flex items-baseline gap-x-1">
+                            <span class="text-5xl font-bold tracking-tight text-white">$3.99</span>
+                        </p>
+                        <p class="mt-2 text-sm text-blue-100">One-time purchase - lifetime access</p>
+                        <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-white">
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                All features forever
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                9 coordinate formats
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                VOR/NDB navigation
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                SWEREF99 & RT90
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                All future updates
+                            </li>
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                No subscription
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://apps.apple.com/app/coordtool/id6751749076" class="mt-8 block rounded-lg bg-white px-6 py-3 text-center text-sm font-semibold leading-6 text-blue-600 shadow-sm hover:bg-gray-50">
+                        Buy PRO
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section class="bg-gray-50 py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl text-center">
+                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
+                    <svg class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                    </svg>
+                </div>
+                <h2 class="mt-6 section-title">Your Privacy First</h2>
+                <p class="section-subtitle">
+                    CoordTool respects your privacy. All coordinate processing happens locally on your device. We don't collect, store, or share your coordinates or location data. The app works offline after initial launch, ensuring your data always remains private.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="bg-gray-900 text-white py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl text-center">
+                <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
+                    Ready to get started?
+                </h2>
+                <p class="mt-6 text-lg leading-8 text-gray-300">
+                    Download CoordTool today and experience professional coordinate conversion on iOS.
+                </p>
+                <div class="mt-10 flex items-center justify-center gap-x-6">
+                    <a href="https://apps.apple.com/app/coordtool/id6751749076" class="btn-primary">
+                        <svg class="inline-block w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                        </svg>
+                        Download on App Store
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-white font-semibold mb-4">CoordTool</h3>
+                    <p class="text-gray-400 text-sm">
+                        Professional coordinate conversion for iOS
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="https://mpktec.se/integritetspolicy" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="#" id="terms-link" class="text-gray-400 hover:text-white text-sm transition-colors cursor-pointer">Terms of Service</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Language</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="/sv/" class="text-gray-400 hover:text-white text-sm transition-colors">Svenska</a>
+                        </li>
+                        <li>
+                            <a href="/en/" class="text-white text-sm font-semibold">English</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                <p class="text-gray-400 text-sm">
+                    © 2025 MPK Tec AB. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Terms Modal -->
+    <div id="terms-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+            <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+                <h2 class="text-2xl font-bold text-gray-900">Terms of Service</h2>
+                <button id="close-modal" class="text-gray-400 hover:text-gray-600">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="px-6 py-4 text-gray-700">
+                <h3 class="font-semibold text-lg mb-2">1. Acceptance of Terms</h3>
+                <p class="mb-4">By using CoordTool, you accept these terms of service.</p>
+
+                <h3 class="font-semibold text-lg mb-2">2. License Description</h3>
+                <p class="mb-4">CoordTool is licensed to you for use on iOS devices that you own or control.</p>
+
+                <h3 class="font-semibold text-lg mb-2">3. Scope of License</h3>
+                <p class="mb-4">The license granted to you for CoordTool is limited to a non-transferable license to use the app on iOS devices that you own or control.</p>
+
+                <h3 class="font-semibold text-lg mb-2">4. Technical Requirements</h3>
+                <p class="mb-4">CoordTool requires iOS 14.0 or later and is optimized for iPhone and iPad.</p>
+
+                <h3 class="font-semibold text-lg mb-2">5. Maintenance and Support</h3>
+                <p class="mb-4">MPK Tec AB is responsible for providing maintenance and support services for CoordTool.</p>
+
+                <h3 class="font-semibold text-lg mb-2">6. User Data</h3>
+                <p class="mb-4">CoordTool does not collect, store, or share your coordinates or location data. All processing happens locally on your device.</p>
+
+                <h3 class="font-semibold text-lg mb-2">7. Limitation of Liability</h3>
+                <p class="mb-4">CoordTool is provided "as is" without any warranties. MPK Tec AB is not responsible for any damages arising from the use of the app.</p>
+
+                <h3 class="font-semibold text-lg mb-2">8. Changes to Terms</h3>
+                <p class="mb-4">MPK Tec AB reserves the right to modify these terms at any time. Continued use of the app after such changes constitutes acceptance of the new terms.</p>
+
+                <h3 class="font-semibold text-lg mb-2">9. Contact Information</h3>
+                <p class="mb-4">For questions about these terms, contact MPK Tec AB via https://mpktec.se</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on links
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Terms modal
+        const termsLink = document.getElementById('terms-link');
+        const termsModal = document.getElementById('terms-modal');
+        const closeModal = document.getElementById('close-modal');
+
+        termsLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            termsModal.classList.remove('hidden');
+        });
+
+        closeModal.addEventListener('click', () => {
+            termsModal.classList.add('hidden');
+        });
+
+        // Close modal when clicking outside
+        termsModal.addEventListener('click', (e) => {
+            if (e.target === termsModal) {
+                termsModal.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
