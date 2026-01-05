@@ -2,19 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="robots" content="noindex, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CoordTool - Professional Coordinate Conversion for iOS</title>
+
+    <!-- Canonical pointing to itself -->
+    <link rel="canonical" href="https://coordtool.se/">
+
+    <!-- Hreflang for all language versions -->
+    <link rel="alternate" hreflang="sv-SE" href="https://coordtool.se/sv/" />
+    <link rel="alternate" hreflang="en" href="https://coordtool.se/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://coordtool.se/en/" />
+
+    <!-- Open Graph tags for social sharing -->
+    <meta property="og:title" content="CoordTool - Professional Coordinate Conversion for iOS">
+    <meta property="og:description" content="Convert between 9 coordinate formats instantly. Perfect for pilots, sailors, and outdoor enthusiasts. Try free for 7 days.">
+    <meta property="og:image" content="https://coordtool.se/images/og-image.jpg">
+    <meta property="og:url" content="https://coordtool.se/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CoordTool">
+
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CoordTool - Professional Coordinate Conversion for iOS">
+    <meta name="twitter:description" content="Convert between 9 coordinate formats instantly. Perfect for pilots, sailors, and outdoor enthusiasts. Try free for 7 days.">
+    <meta name="twitter:image" content="https://coordtool.se/images/og-image.jpg">
+
     <script>
-        // Language detection and redirect
+        // Language detection and redirect with delay for social crawlers
         const userLang = navigator.language || navigator.userLanguage;
         const langCode = userLang.split('-')[0]; // Get primary language code
 
+        let targetPath;
         // Redirect to appropriate language version
         if (langCode === 'sv') {
-            window.location.href = '/sv/';
+            targetPath = '/sv/';
         } else {
-            window.location.href = '/en/';
+            targetPath = '/en/';
         }
+
+        // Delay redirect to allow social media crawlers to read metadata
+        setTimeout(function() {
+            window.location.replace(targetPath);
+        }, 300);
     </script>
     <style>
         body {
